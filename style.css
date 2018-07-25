@@ -1,3 +1,9 @@
+body {
+    background-color: #F5F6FC;
+    font-family: 'Raleway', sans-serif;
+}
+
+
 .flex-center {
     display: flex;
     align-items: center;
