@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Ambrosus Client Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <script src="./web3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ambrosus-javascript-sdk@latest/lib/ambrosus.min.js"></script>
@@ -17,140 +18,9 @@
 </head>
 
 <style>
-    .flex-center {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        justify-content: center;
-    }
-
-    .flex-column {
-        flex-direction: column !important;
-    }
-
-    .pad-l-10 {
-        padding-left: 10px;
-    }
-
-    .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        transition: 0.3s;
-        border-radius: 5px;
-    }
-
-    img {
-        border-radius: 5px 5px 0 0;
-    }
-
-    .main {
-        text-align: center;
-        margin-top: 15px;
-        padding: 20px;
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    .status-svg {
-        max-height: 250px;
-        margin: 10px;
-    }
-
-    .check-svg {
-        max-height: 35px;
-    }
-
     body {
         background-color: #F5F6FC;
         font-family: 'Raleway', sans-serif;
-    }
-
-    .green-text {
-        color: #00CF30;
-    }
-
-    .padding-20 {
-        padding: 20px;
-    }
-
-    .show-event-btn {
-        margin: 20px 50px;
-    }
-
-    .grey-text {
-        color: rgb(102, 102, 102);
-    }
-
-    .row-header-content {
-        padding-bottom: 20px;
-        margin-bottom: 10px;
-    }
-
-    .row-content {
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-    }
-
-    .inner-row {
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }
-
-    .margin-top-20 {
-        margin-top: 20px;
-    }
-
-    .left-align {
-        text-align: left;
-    }
-
-    @media screen and (max-width: 425px) {
-        .check-pad {
-            margin-left: 20px;
-            margin-top: 20px;
-        }
-        .button-pad {
-            margin-top: 20px;
-        }
-    }
-
-    @media screen and (min-width: 768px) {}
-
-    .margin-50 {
-        margin: 50px;
-    }
-
-    .vertical-line {
-        border-right: 1px dashed #333;
-    }
-
-    .collapse-padding {
-        padding-top: 10px;
-    }
-
-    .wrap {
-        /* word-wrap: break-word; */
-        word-break: break-all;
-    }
-
-    .logo {
-        max-width: 200px;
-    }
-
-    @media screen and (min-width: 768px) {
-        .input-width {
-            width: 500px;
-        }
-    }
-
-    .green-bg {
-        background-color: lightgreen;
-        padding: 12px;
-    }
-
-    .strong-vertical-align {
-        vertical-align: -webkit-baseline-middle;
     }
 </style>
 
