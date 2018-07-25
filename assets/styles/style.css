@@ -103,6 +103,9 @@ img {
         vertical-align: -webkit-baseline-middle;
         font-size: 85%;
     }
+    .response-font-size {
+        font-size: 70%;
+    }
 }
 
 @media screen and (min-width: 768px) {}

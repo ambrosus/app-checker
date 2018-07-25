@@ -25,13 +25,13 @@
                 <p>Verify an Event on the Ambrosus Blockchain</p>
                 <div class="form-inline">
                     <div class="form-group mx-sm-3 mb-2">
-                        <label for="eventid" class="sr-only">Password</label>
+                        <label for="eventid" class="sr-only">Event ID</label>
                         <input class="input-width" type="string" id="eventId" name="eventId" class="form-control" placeholder="Enter an Event ID">
                     </div>
                     <button onclick="check()" class="btn btn-primary mb-2">Verify event</button>
                 </div>
                 <hr>
-                <p id="invalid" style="color:firebrick">Invalid Asset ID, Please check again</p>
+                <p id="invalid" style="color:firebrick">Invalid Event ID, Please check again</p>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
                         <div class="show-event-btn">
                             <button data-toggle="collapse" data-target="#demo0" type="button" class="btn btn-outline-primary">Show Event JSON</button>
                             <div id="demo0" class="collapse padding-top-10" style="text-align: left;">
-                                <pre><p name="eventResponse" id="eventResponse"></p></pre>
+                                <pre><p name="eventResponse" class="response-font-size" id="eventResponse"></p></pre>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                                     <div class="row">
                                         <div class="col-6 vertical-line">
                                             <div>
-                                                <p>AMB Response</p>
+                                                <p>AMB-NET Response</p>
                                             </div>
                                             <hr>
                                             <p class="green-bg">0x300dddb628585fb480a0a484da7c8b2ee9379117f18c7cd0ee114d61050f43db</p>
@@ -135,7 +135,7 @@
                                         <div class="row">
                                             <div class="col-6 vertical-line">
                                                 <div>
-                                                    <p>AMB Response</p>
+                                                    <p>AMB-NET Response</p>
                                                 </div>
                                                 <hr>
                                                 <p id="ambDataHash" class="green-bg"></p>
@@ -183,7 +183,7 @@
                                         <div class="row">
                                             <div class="col-6 vertical-line">
                                                 <div>
-                                                    <p>AMB Response</p>
+                                                    <p>AMB-NET Response</p>
                                                 </div>
                                                 <hr>
                                                 <p id="ambCreatedBy" class="green-bg"></p>
@@ -231,7 +231,7 @@
                                         <div class="row">
                                             <div class="col-6 vertical-line">
                                                 <div>
-                                                    <p>AMB Response</p>
+                                                    <p>AMB-NET Response</p>
                                                 </div>
                                                 <hr>
                                                 <p id="ambEventId" class="green-bg"></p>
@@ -278,7 +278,7 @@
                                     <div class="row">
                                         <div class="col-6 vertical-line">
                                             <div>
-                                                <p>AMB Response</p>
+                                                <p>AMB-NET Response</p>
                                             </div>
                                             <hr>
                                             <p class="green-bg">0x300dddb628585fb480a0a484da7c8b2ee9379117f18c7cd0ee114d61050f43db</p>
