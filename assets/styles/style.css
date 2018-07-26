@@ -145,3 +145,8 @@ img {
 .strong-vertical-align {
     vertical-align: -webkit-baseline-middle;
 }
+
+.description {
+    font-size: 80%; 
+    color: cornflowerblue;
+}

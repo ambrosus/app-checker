@@ -11,6 +11,13 @@ const ambrosus = new AmbrosusSDK({
 onInit();
 
 function onInit() {
+    const eventId = window.location.href.split('#')[1];
+    console.log(eventId);
+    if (eventId === undefined) {
+        console.log('Undefined');
+    } else {
+        getEventById(eventId);
+    }
     document.getElementById('firstPage').style.display = 'block';
     document.getElementById('secondPage').style.display = 'none';
     document.getElementById('invalid').style.display = 'none';
@@ -21,7 +28,10 @@ window.onpopstate = function () {
 }
 
 function check() {
-    const eventId = document.getElementById('eventId').value;
+    getEventById(document.getElementById('eventId').value);
+}
+
+function getEventById(eventId) {
     ambrosus.getEventById(eventId)
         .then(response => initVerify(response.data))
         .catch(error => throwError());
@@ -32,7 +42,7 @@ function throwError() {
 }
 
 function initVerify(eventData) {
-    window.location.hash = 'check-summary';
+    window.location.hash = eventData.eventId;
     document.getElementById('firstPage').style.display = 'none';
     document.getElementById('secondPage').style.display = 'block';
     document.getElementById("eventResponse").innerHTML = JSON.stringify(eventData, null, "  ");
