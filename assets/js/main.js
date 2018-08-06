@@ -11,7 +11,7 @@ const ambrosus = new AmbrosusSDK({
 onInit();
 
 function onInit() {
-    const eventId = window.location.href.split('#')[1];
+    const eventId = window.location.href.split('=')[1];
     console.log(eventId);
     if (eventId === undefined) {
         console.log('Undefined');
@@ -42,7 +42,7 @@ function throwError() {
 }
 
 function initVerify(eventData) {
-    window.location.hash = eventData.eventId;
+    window.history.pushState( {} , '', '?eventId=' + eventData.eventId );
     document.getElementById('firstPage').style.display = 'none';
     document.getElementById('secondPage').style.display = 'block';
     document.getElementById("eventResponse").innerHTML = JSON.stringify(eventData, null, "  ");
@@ -59,7 +59,7 @@ function verify(ambIdData, ambSignature, ambData, ambEventId) {
     const web3DataHash = calculateHash(ambData);
     if (ambIdData.dataHash === web3DataHash) {
         console.log('Data Hash verified');
-        document.getElementById('dataHashTrue').style.display = 'block';
+        document.getElementById('dataHashTrue').style.display = '-webkit-inline-box';
         document.getElementById("ambDataHash").innerHTML = ambIdData.dataHash;
         document.getElementById("web3DataHash").innerHTML = web3DataHash;
     }
