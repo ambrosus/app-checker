@@ -10,6 +10,6 @@ Enter an `eventId` to verify
 
 In order to access the event checks, the eventId can be passed in the URL. 
 
-Example: `https://ambrosus.github.io/app-checker#0x1dd17367bfa2b414846692385f05388f840ad546514fba57511ff1d6ca5acdd2`
+Example: `https://ambrosus.github.io/app-checker?eventId=0x1dd17367bfa2b414846692385f05388f840ad546514fba57511ff1d6ca5acdd2`
 
-Here in, the eventId is followed after a `#` sign.
+Here in, the eventId is passed as a query parameter.
