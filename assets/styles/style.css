@@ -44,6 +44,11 @@ img {
     margin: 10px;
 }
 
+.status-svg-failure {
+    max-height: 200px;
+    margin: 20px;
+}
+
 .check-svg {
     max-height: 35px;
 }
@@ -149,4 +154,16 @@ img {
 .description {
     font-size: 80%; 
     color: cornflowerblue;
+}
+
+.failure-msg {
+    display: none; color: red;
+}
+
+.display-none {
+    display: none;
+}
+
+.red-text {
+    color: red;
 }
