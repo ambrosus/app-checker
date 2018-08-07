@@ -14,13 +14,13 @@ function onInit() {
     const eventId = window.location.href.split('=')[1];
     if (eventId === undefined) {
         console.log('Undefined');
+        document.getElementById('firstPage').style.display = 'block';
+        document.getElementById('secondPage').style.display = 'none';
+        document.getElementById('loading').style.display = 'none';
     } else {
         getEventById(eventId);
         document.getElementById('loading').style.display = 'block';
     }
-    document.getElementById('firstPage').style.display = 'block';
-    document.getElementById('secondPage').style.display = 'none';
-    document.getElementById('invalid').style.display = 'none';
 }
 
 window.onpopstate = function () {
