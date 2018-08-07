@@ -32,6 +32,7 @@
                 </div>
                 <hr>
                 <p id="invalid" style="color:firebrick">Invalid Event ID, Please check again</p>
+                <h4 id="loading" style="color: blue;" class="display-none">LOADING . . . </h4>
             </div>
         </div>
     </div>
@@ -49,9 +50,13 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <div class="card center">
-                        <img src="./assets/images/success.svg" class="status-svg">
-                        <h5 class="green-text">
+                        <img id="checkSuccessImg" src="./assets/images/success.svg" class="status-svg display-none">
+                        <img id="checkFailImg" src="./assets/images/failed.svg" class="status-svg-failure display-none">
+                        <h5 id="checkSuccessMsg" class="green-text display-none">
                             <strong>All Checks Passed</strong>
+                        </h5>
+                        <h5 id="checkFailMsg" class="red-text display-none">
+                            <strong>One or more checks failed</strong>
                         </h5>
                         <div class="show-event-btn">
                             <button data-toggle="collapse" data-target="#demo0" type="button" class="btn btn-outline-primary">Show Event JSON</button>
@@ -118,8 +123,8 @@
                         <div class="card center">
                             <div class="row inner-row">
                                 <div class="col-2 col-md-3 check-pad">
-                                    <img id="dataHashTrue" style="display: none;" src="./assets/images/checked.svg" class="check-svg">
-                                    <img id="dataHashFalse" style="display: none;" src="./assets/images/failed.svg" class="check-svg">
+                                    <img id="dataHashTrueImg" src="./assets/images/checked.svg" class="check-svg display-none">
+                                    <img id="dataHashFalseImg" src="./assets/images/failed.svg" class="check-svg display-none">
                                 </div>
                                 <div class="col-4 col-md-6">
                                     <p class="left-align">
@@ -150,7 +155,8 @@
                                                 <p id="web3DataHash" class="green-bg"></p>
                                             </div>
                                         </div>
-                                        <p class="green-text center margin-top-20">VERIFICATION SUCCESSFUL</p>
+                                        <p id="dataHashTrueMsg" class="green-text center margin-top-20 display-none">VERIFICATION SUCCESSFUL</p>
+                                        <p id="dataHashFalseMsg" class="green-text center margin-top-20 failure-msg">VERIFICATION FAILED!</p>
                                         <p class="description">Data Hash is a hash of content.data</p>
                                     </div>
                                 </div>
@@ -168,7 +174,8 @@
                         <div class="card center">
                             <div class="row inner-row">
                                 <div class="col-2 col-md-3 check-pad">
-                                    <img src="./assets/images/checked.svg" class="check-svg">
+                                    <img id="signatureTrueImg" src="./assets/images/checked.svg" class="check-svg display-none">
+                                    <img id="signatureFalseImg" src="./assets/images/failed.svg" class="check-svg display-none">
                                 </div>
                                 <div class="col-4 col-md-6">
                                     <p class="left-align">
@@ -199,7 +206,8 @@
                                                 <p id="web3CreatedBy" class="green-bg"></p>
                                             </div>
                                         </div>
-                                        <p class="green-text center margin-top-20">VERIFICATION SUCCESSFUL</p>
+                                        <p id="signatureTrueMsg" class="green-text center margin-top-20 display-none">VERIFICATION SUCCESSFUL</p>
+                                        <p id="signatureFalseMsg" class="green-text center margin-top-20 failure-msg">VERIFICATION FAILED!</p>
                                         <p class="description">Signature is verified by recovering the public key using the signature and idData</p>
                                     </div>
                                 </div>
@@ -217,7 +225,8 @@
                         <div class="card center">
                             <div class="row inner-row">
                                 <div class="col-2 col-md-3 check-pad">
-                                    <img src="./assets/images/checked.svg" class="check-svg">
+                                    <img id="eventIdTrueImg" src="./assets/images/checked.svg" class="check-svg display-none">
+                                    <img id="eventIdFalseImg" src="./assets/images/failed.svg" class="check-svg display-none">
                                 </div>
                                 <div class="col-4 col-md-6">
                                     <p class="left-align">
@@ -248,7 +257,8 @@
                                                 <p id="web3EventId" class="green-bg"></p>
                                             </div>
                                         </div>
-                                        <p class="green-text center margin-top-20">VERIFICATION SUCCESSFUL</p>
+                                        <p id="eventIdTrueMsg" class="green-text center margin-top-20 display-none">VERIFICATION SUCCESSFUL</p>
+                                        <p id="eventIdFalseMsg" class="green-text center margin-top-20 failure-msg">VERIFICATION FAILED!</p>
                                         <p class="description">EventID is the keccak256 hash of content</p>
                                     </div>
                                 </div>

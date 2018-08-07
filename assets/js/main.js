@@ -1,5 +1,5 @@
 if (typeof window.web3 !== "undefined" && typeof window.web3.currentProvider !== "undefined") {
-    var web3 = new Web3(window.web3.currentProvider);
+    let web3 = new Web3(window.web3.currentProvider);
 } else {
     web3 = new Web3();
 }
@@ -12,11 +12,11 @@ onInit();
 
 function onInit() {
     const eventId = window.location.href.split('=')[1];
-    console.log(eventId);
     if (eventId === undefined) {
         console.log('Undefined');
     } else {
         getEventById(eventId);
+        document.getElementById('loading').style.display = 'block';
     }
     document.getElementById('firstPage').style.display = 'block';
     document.getElementById('secondPage').style.display = 'none';
@@ -24,6 +24,8 @@ function onInit() {
 }
 
 window.onpopstate = function () {
+    let url = window.location.href.split("?")[0];
+    window.history.pushState(null, document.title, url);
     onInit();
 }
 
@@ -39,10 +41,11 @@ function getEventById(eventId) {
 
 function throwError() {
     document.getElementById('invalid').style.display = 'block';
+    document.getElementById('loading').style.display = 'none';
 }
 
 function initVerify(eventData) {
-    window.history.pushState( {} , '', '?eventId=' + eventData.eventId );
+    window.history.pushState({}, '', '?eventId=' + eventData.eventId);
     document.getElementById('firstPage').style.display = 'none';
     document.getElementById('secondPage').style.display = 'block';
     document.getElementById("eventResponse").innerHTML = JSON.stringify(eventData, null, "  ");
@@ -55,22 +58,42 @@ function initVerify(eventData) {
 
 function verify(ambIdData, ambSignature, ambData, ambEventId) {
 
+    let verificationFlag = 0;
+
     // Check Data Hash
     const web3DataHash = calculateHash(ambData);
     if (ambIdData.dataHash === web3DataHash) {
         console.log('Data Hash verified');
-        document.getElementById('dataHashTrue').style.display = '-webkit-inline-box';
+        document.getElementById('dataHashTrueImg').style.display = '-webkit-inline-box';
+        document.getElementById('dataHashTrueMsg').style.display = '-webkit-inline-box';
         document.getElementById("ambDataHash").innerHTML = ambIdData.dataHash;
         document.getElementById("web3DataHash").innerHTML = web3DataHash;
+    } else if (ambIdData.dataHash !== web3DataHash) {
+        console.log('Data Hash verification failed');
+        document.getElementById('dataHashFalseImg').style.display = '-webkit-inline-box';
+        document.getElementById('dataHashFalseMsg').style.display = '-webkit-inline-box';
+        document.getElementById("ambDataHash").innerHTML = ambIdData.dataHash;
+        document.getElementById("web3DataHash").innerHTML = web3DataHash;
+        verificationFlag = 1;
     }
 
     // Check createdBy (public Key)
     const web3CreatedBy = web3.eth.accounts.recover(serializeForHashing(ambIdData), ambSignature);
     if (ambIdData.createdBy === web3CreatedBy) {
         console.log('Signature verified');
+        document.getElementById('signatureTrueImg').style.display = '-webkit-inline-box';
+        document.getElementById('signatureTrueMsg').style.display = '-webkit-inline-box';
         document.getElementById('createdByTrue').style.display = 'block';
         document.getElementById("ambCreatedBy").innerHTML = ambIdData.createdBy;
         document.getElementById("web3CreatedBy").innerHTML = web3CreatedBy;
+    } else if (ambIdData.createdBy !== web3CreatedBy) {
+        console.log('Signature verification failed');
+        document.getElementById('signatureFalseImg').style.display = '-webkit-inline-box';
+        document.getElementById('signatureFalseMsg').style.display = '-webkit-inline-box';
+        document.getElementById('createdByTrue').style.display = 'block';
+        document.getElementById("ambCreatedBy").innerHTML = ambIdData.createdBy;
+        document.getElementById("web3CreatedBy").innerHTML = web3CreatedBy;
+        verificationFlag = 1;
     }
 
     // Insert the signature in content
@@ -86,10 +109,30 @@ function verify(ambIdData, ambSignature, ambData, ambEventId) {
     const web3EventId = calculateHash(content.content);
     if (ambEventId === web3EventId) {
         console.log('EventID verified');
+        document.getElementById('eventIdTrueImg').style.display = '-webkit-inline-box';
+        document.getElementById('eventIdTrueMsg').style.display = '-webkit-inline-box';
         document.getElementById('eventIdTrue').style.display = 'block';
         document.getElementById("ambEventId").innerHTML = ambEventId;
         document.getElementById("web3EventId").innerHTML = web3EventId;
+    } else if (ambEventId !== web3EventId) {
+        console.log('EventID verification failed');
+        document.getElementById('eventIdFalseImg').style.display = '-webkit-inline-box';
+        document.getElementById('eventIdFalseMsg').style.display = '-webkit-inline-box';
+        document.getElementById('eventIdTrue').style.display = 'block';
+        document.getElementById("ambEventId").innerHTML = ambEventId;
+        document.getElementById("web3EventId").innerHTML = web3EventId;
+        verificationFlag = 1;
     }
+
+
+    if (verificationFlag === 1) {
+        document.getElementById('checkFailImg').style.display = '-webkit-inline-box';
+        document.getElementById('checkFailMsg').style.display = 'block';
+    } else if (verificationFlag === 0) {
+        document.getElementById('checkSuccessImg').style.display = '-webkit-inline-box';
+        document.getElementById('checkSuccessMsg').style.display = 'block';
+    }
+
 }
 
 function serializeForHashing(object) {
