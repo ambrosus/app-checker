@@ -8,12 +8,17 @@ const ambrosus = new AmbrosusSDK({
     apiEndpoint: 'https://gateway-test.ambrosus.com'
 });
 
+window.onpopstate = function () {
+    let url = window.location.href.split("?")[0];
+    window.history.pushState(null, document.title, url);
+    onInit();
+}
+
 onInit();
 
 function onInit() {
     const eventId = window.location.href.split('=')[1];
     if (eventId === undefined) {
-        console.log('Undefined');
         document.getElementById('firstPage').style.display = 'block';
         document.getElementById('secondPage').style.display = 'none';
         document.getElementById('loading').style.display = 'none';
@@ -21,12 +26,6 @@ function onInit() {
         getEventById(eventId);
         document.getElementById('loading').style.display = 'block';
     }
-}
-
-window.onpopstate = function () {
-    let url = window.location.href.split("?")[0];
-    window.history.pushState(null, document.title, url);
-    onInit();
 }
 
 function check() {
@@ -157,6 +156,5 @@ function serializeForHashing(object) {
 }
 
 function calculateHash(data) {
-    const serialized = this.serializeForHashing(data);
-    return this.web3.eth.accounts.hashMessage(serialized);
+    return web3.eth.accounts.hashMessage(serializeForHashing(data));
 }
